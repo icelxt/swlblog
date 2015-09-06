@@ -3,5 +3,5 @@ module.exports = {
 	/*db:'blog',
 	host:'localhost',
 	prot:'27017'*/
-	url:''
+	url:'mongodb://admin:admin@ds042688.mongolab.com:42688/blog'
 }
