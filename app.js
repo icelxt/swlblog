@@ -16,7 +16,7 @@ var flash = require('connect-flash');
 var app = express();
 
 // view engine setup
-app.set('port', process.env.PORT || 3000);
+//app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(flash());
@@ -48,9 +48,9 @@ app.use(multer({
 
 routes(app);
 
-app.listen(app.get('port'), function() {
+/*app.listen(app.get('port'), function() {
 console.log('Express server listening on port '+ app.get('port'));
-});
+});*/
 //app.use('/', routes);
 //app.use('/users', users);
 
@@ -86,4 +86,4 @@ console.log('Express server listening on port '+ app.get('port'));
 });*/
 
 
-//module.exports = app;
+module.exports = app;
