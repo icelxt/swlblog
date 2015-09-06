@@ -138,7 +138,7 @@ Post.getOne = function(name, day, title, callback) {
 			//根据用户名，发表日期及文章名进行查询
 			collection.findOne({
 				"name":name,
-				"title.day":day,
+				"time.day":day,
 				"title":title
 			}, function(err, doc) {
 				db.close();
@@ -320,6 +320,7 @@ Post.getTag = function(tag, callback) {
 				if(err) {
 					return callback(err);
 				}
+				console.log("message:"+docs);
 				callback(null, docs);
 			});
 		});
