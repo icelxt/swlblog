@@ -65,10 +65,10 @@ module.exports = function(app) {
 			return res.redirect('/reg');//返回注册页
 		}
 		//生产密码的md5值
-		var md5 = crypto.createHash('md5'),
-			password = md5.update(req.body.password).digest('hex');
+		var md5 = crypto.createHash('md5');
+		password = md5.update(req.body.password).digest('hex');
 		var newUser = new User({
-			name:req.body.name,
+			name:name,
 			password:password,
 			email:req.body.email
 		});
