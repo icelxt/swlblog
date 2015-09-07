@@ -232,6 +232,15 @@ module.exports = function(app) {
 			});
 		});
 	});
+	//关于我
+	app.get('/aboutme', function(req, res) {
+		res.render('aboutme', {
+			title:'关于我',
+			user:req.session.user,
+			success:req.flash('success').toString(),
+			error:req.flash('error').toString()
+		});
+	});
 	app.get('/u/:name', function(req, res){
 		var page = req.query.p ? parseInt(req.query.p) : 1;
 		var num = 10;

@@ -1,9 +1,9 @@
 <br/>
-<div>
+<ul class="pager">
 	<% if(!isFirstPage) { %>
-	<span class="prepage"><a title="上一页" href="?p=<%= page-1 %>">上一页</a></span>
+	<li class="previous"><a title="上一页" href="?p=<%= page-1 %>"><span aria-hidden="true">&larr;</span> Previous</a></li>
 	<% } %>
 	<% if(!isLastPage) { %>
-	<span class="nextpage"><a title="下一页" href="?p=<%= page+1 %>">下一页</a></span>
+	<li class="next"><a title="下一页" href="?p=<%= page+1 %>">Next <span aria-hidden="true">&rarr;</span></a></li>
 	<% } %>
-</div>
+</ul>
