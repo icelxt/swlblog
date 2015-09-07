@@ -45,7 +45,8 @@ module.exports = function(app) {
 			});
 		});
 	});
-	app.get('/reg', checkNotLogin);
+	//app.get('/reg', checkNotLogin);
+	app.get('/reg', checkLogin);
 	app.get('/reg', function(req, res) {
 		res.render('reg', {title:'注册',
 			user:req.session.user,
@@ -53,7 +54,8 @@ module.exports = function(app) {
 			error:req.flash('error').toString()
 		});
 	});
-	app.post('/reg', checkNotLogin);
+	//app.post('/reg', checkNotLogin);
+	app.post('/reg', checkLogin);
 	app.post('/reg', function(req, res) {
 		var name = req.body.name,
 			password = req.body.password,
@@ -128,7 +130,7 @@ module.exports = function(app) {
 	app.post('/post', function(req, res) {
 		var currentUser = req.session.user,
 			tags = [req.body.tag1, req.body.tag2, req.body.tag3],
-			post = new Post(currentUser.name, req.body.title, tags, req.body.post);
+			post = new Post(currentUser.name, currentUser.head, req.body.title, tags, req.body.post);
 		post.save(function(err) {
 			if(err) {
 				req.flash('error', err);
@@ -205,6 +207,31 @@ module.exports = function(app) {
 			});
 		});
 	});
+	//友情链接
+	app.get('/links', function(req, res) {
+		res.render('links', {
+			title:'友情链接',
+			user:req.session.user,
+			success:req.flash('success').toString(),
+			error:req.flash('error').toString()
+		});
+	});
+	//文章检索
+	app.get('/search', function(req, res) {
+		Post.search(req.query.keyword, function(err, posts) {
+			if(err) {
+				req.flash('error', err);
+				return res.redirect('/');
+			}
+			res.render('serach', {
+				title:"SEARCH:" + req.query.keyword,
+				posts:posts,
+				user:req.session.user,
+				success:req.flash('success').toString(),
+				error:req.flash('error').toString()
+			});
+		});
+	});
 	app.get('/u/:name', function(req, res){
 		var page = req.query.p ? parseInt(req.query.p) : 1;
 		var num = 10;
@@ -252,8 +279,12 @@ module.exports = function(app) {
 	app.post('/u/:name/:day/:title', function(req, res) {
 		var date = new Date(),
 			time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+		var md5 = crypto.createHash('md5'),
+			email_MD5 = md5.update(req.body.email.toLowerCase()).digest('hex'),
+			head = "http://www.gravatar.com/avatar/" + email_MD5 + "?s=48";
 		var comment = {
 			name:req.body.name,
+			head:head,
 			eamil:req.body.eamil,
 			website:req.body.website,
 			time:time,
@@ -311,7 +342,10 @@ module.exports = function(app) {
 			res.redirect('/');
 		});
 	});
-
+	//404错误页
+	app.use(function(req, res) {
+		res.render("404");
+	});
 function checkLogin(req, res, next) {
 	if(!req.session.user) {
 		req.flash('error', '未登录！');
