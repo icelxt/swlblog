@@ -16,10 +16,10 @@
 	邮箱：<input type="text" name="email" value="<%= user.email %>" /><br/>
 	网址：<input type="text" name="website" value="<%= user.website %>" /><br/>
 	<% } else{ %>
-	姓名：<input type="text" name="name" /><br/>
-	邮箱：<input type="text" name="email" /><br/>
+	姓名：<input type="text" name="name" placeholder="your name" /><br/>
+	邮箱：<input type="text" name="email" placeholder="your email" /><br/>
 	网址：<input type="text" name="website" value="http://" /><br/>
 	<% } %>
-	<textarea name="content" rows="5" cols="80"></textarea><br/>
+	<textarea name="content" rows="5" cols="80" placeholder="一起来讨论吧"></textarea><br/>
 	<input type="submit" value="留言">
 </form>
