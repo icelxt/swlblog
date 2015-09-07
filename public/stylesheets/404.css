@@ -34,3 +34,14 @@ body {
   letter-spacing: 1px;
   line-height: 2em
 }
+a {
+  display: block;
+  text-decoration: none;
+  padding: .7em 1em;
+  color: #000000;
+}
+a:hover {
+  background-color: #ECECEC;
+  color: #f9f9f9;
+  -webkit-transition:color .2s linear;
+}
