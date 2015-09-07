@@ -223,7 +223,7 @@ module.exports = function(app) {
 				req.flash('error', err);
 				return res.redirect('/');
 			}
-			res.render('serach', {
+			res.render('search', {
 				title:"SEARCH:" + req.query.keyword,
 				posts:posts,
 				user:req.session.user,
