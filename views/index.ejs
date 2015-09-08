@@ -1,5 +1,6 @@
 <%- include header %>
 <% posts.forEach(function(post, index){ %>
+<div style="background-color: #ffffff; padding: 10px; margin:10px 0;" class="img-rounded div-list">
 <% if(index == 0) {%>
 <h2><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h2><a href="/u/<%= post.name %>"><img src="<%= post.head %>" class="r_head img-rounded" style="width:105px;"></img></a>
 <p class="info">
@@ -14,9 +15,9 @@
 <%- post.post %>
 <p class="info">阅读：<%= post.pv %> | 评论：<%= post.comments.length %></p>
 <% } else { %>
-<table width="100%"><tr><td><h2><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h2></td><td align="right">日期：<%= post.time.minute %></td></tr></table>
-
+<table width="100%"><tr><td><h3><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h3></td><td align="right">日期：<%= post.time.minute %></td></tr></table>
 <% } %>
+</div>
 <% }) %>
 <%- include paging %>
 <%- include footer %>

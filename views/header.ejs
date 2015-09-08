@@ -7,8 +7,32 @@
 	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
 	<link rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="/stylesheets/style.css">
+	<!-- <link rel="stylesheet" href="/stylesheets/calendar.css"> -->
+	<script type="text/javascript">
+		/*window.onload = function(){
+			var date = new Date();
+			document.getElementById("year").innerHTML=date.getFullYear();
+			var month;
+			switch(date.getMonth()){
+				case 0:month="January";break;
+				case 1:month="February";break;
+				case 2:month="March";break;
+				case 3:month="April";break;
+				case 4:month="May";break;
+				case 5:month="June";break;
+				case 6:month="July";break;
+				case 7:month="August";break;
+				case 8:month="September";break;
+				case 9:month="October";break;
+				case 10:month="November";break;
+				case 11:month="December";
+			}
+			document.getElementById("month").innerHTML=month;
+			document.getElementById("day").innerHTML=date.getDate();
+		}*/
+	</script>
 </head>
-<body>
+<body style="background-color: rgb(233, 234, 236);">
 <header>
 <h1><%= title %></h1>
 </header>
@@ -29,8 +53,9 @@
 	<span><form action="/search" method="GET"><input type="text" name="keyword" placeholder="SEARCH" class="search" /></form></span>
 </nav>
 <nav class="navr">
-	<embed width="185px" height="50px" wmode="transparent" quality="high" type="application/x-shockwave-flash" src="../flash/time.swf"><!--http://7xk4ve.com1.z0.glb.clouddn.com/time.jpg-->
-	<br/><span>我的标签</span>
+	<embed width="185px" height="50px" wmode="transparent" quality="high" type="application/x-shockwave-flash" src="../flash/time.swf">
+	<br/>
+	
 </nav>
 <article>
 	<% if (success) { %>
