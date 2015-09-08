@@ -138,3 +138,9 @@ article a:hover {
 .div-list:hover {
 	box-shadow: 0 0px 8px rgba(46, 143, 237, 0.3)
 }
+.view {
+	background-color: #ffffff;
+	padding: 10px;
+	margin:10px 0;
+	box-shadow: 0 0px 8px rgba(46, 143, 237, 0.3);
+}

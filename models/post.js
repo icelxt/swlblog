@@ -78,9 +78,9 @@ Post.getAll = function(name, callback) {
 				if(err) {
 					return callback(err);
 				}
-				docs.forEach(function(doc) {
+				/*docs.forEach(function(doc) {
 					doc.post = markdown.toHTML(doc.post);
-				});
+				});*/
 				callback(null, docs);
 			});
 		});
@@ -115,9 +115,9 @@ Post.getNum = function(name, page, num, callback) {
 					if(err) {
 						return callback(err);
 					}
-					docs.forEach(function(doc) {
+					/*docs.forEach(function(doc) {
 						doc.post = markdown.toHTML(doc.post);
-					});
+					});*/
 					callback(null, docs, total);
 				});
 			});
@@ -164,7 +164,7 @@ Post.getOne = function(name, day, title, callback) {
 							return callback(err);
 						}
 					});
-					doc.post = markdown.toHTML(doc.post);
+					/*doc.post = markdown.toHTML(doc.post);*/
 					doc.comments.forEach(function(comment) {
 						comment.content = markdown.toHTML(comment.content);
 					});
