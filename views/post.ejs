@@ -18,4 +18,14 @@
 	</div>
 	<input type="submit" class="btn btn-success" value="发表" />
 </form>
+<script charset="utf-8" src="/kindeditor/kindeditor-min.js"></script>
+<script charset="utf-8" src="/kindeditor/lang/zh_CN.js"></script>
+<script type="text/javascript">
+	var editor;
+	KindEditor.ready(function(K) {
+		editor = K.create('textarea[name="post"]', {
+			allowImageUpload : false
+		});
+	});
+</script>
 <%- include footer %>

@@ -1,6 +1,7 @@
 <%- include header %>
 <% posts.forEach(function(post, index){ %>
-<p><h2><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h2><a href="/u/<%= post.name %>"><img src="<%= post.head %>" class="r_head"></img></a></p>
+<div name="div_post" style="background-color: #ffffff; padding: 10px; margin:10px 0;" class="img-rounded div-list">
+<h2><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></h2>
 <p class="info">
 	作者：<a href="/u/<%= post.name %>"><%= post.name %></a> | 
 	日期：<%= post.time.minute %> | 
@@ -10,8 +11,16 @@
 	<a class="tag" href="/tags/<%= tag %>"><%= tag %></a>
 	<% }}) %>
 </p>
-<p><%- post.post %></p>
+<%- post.post %>
 <p class="info">阅读：<%= post.pv %> | 评论：<%= post.comments.length %></p>
+</div>
 <% }) %>
+<script charset="utf-8" src="/javascripts/cutter.developer.js"></script>
+<script type="text/javascript">
+	var oElements = document.getElementsByName("div_post");
+	for (var t=0;t<oElements.length;t++) {
+		Cutter.run(oElements[t], oElements[t], 30, {more:"阅读原文"}, {more:"alink"});
+	}
+</script>
 <%- include paging %>
 <%- include footer %>

@@ -7,12 +7,9 @@
 	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
 	<link rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
 	<link rel="stylesheet" href="/stylesheets/style.css">
-	<!-- <link rel="stylesheet" href="/stylesheets/calendar.css"> -->
-	<script charset="utf-8" src="/kindeditor/kindeditor-min.js"></script>
-	<script charset="utf-8" src="/kindeditor/lang/zh_CN.js"></script>
-	<script type="text/javascript">
-		//window.onload = function(){
-			/*var date = new Date();
+	<!-- <link rel="stylesheet" href="/stylesheets/calendar.css">
+	 window.onload = function(){
+			var date = new Date();
 			document.getElementById("year").innerHTML=date.getFullYear();
 			var month;
 			switch(date.getMonth()){
@@ -30,22 +27,8 @@
 				case 11:month="December";
 			}
 			document.getElementById("month").innerHTML=month;
-			document.getElementById("day").innerHTML=date.getDate();*/
-			var editor;
-			KindEditor.ready(function(K) {
-				editor = K.create('textarea[name="post"]', {
-					allowImageUpload : false,
-					items:[
-						'fontname', 'fontsize',
-						'|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-						'removeformat', '|', 'justifyleft', 'justifycenter',
-						'justifyright', 'insertorderedlist', 'insertunorderedlist', '|',
-						'emoticons', 'image', 'link'
-					]
-				});
-			});
-		//};
-	</script>
+			document.getElementById("day").innerHTML=date.getDate();
+	}; -->
 </head>
 <body style="background-color: rgb(233, 234, 236);">
 <header>
