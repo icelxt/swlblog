@@ -118,6 +118,13 @@ Post.getNum = function(name, page, num, callback) {
 					/*docs.forEach(function(doc) {
 						doc.post = markdown.toHTML(doc.post);
 					});*/
+					//列表中摘要,只有首页这样显示
+					if(num == 5){
+						docs.forEach(function(doc) {
+							doc.post = doc.post.replace(/<[^>]*>/g, "");
+							doc.post = doc.post.substr(0, 100) + " .....";
+						});
+					}
 					callback(null, docs, total);
 				});
 			});

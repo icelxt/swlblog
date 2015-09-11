@@ -150,3 +150,10 @@ article a:hover {
 	margin:10px 0;
 	box-shadow: 0 0px 8px rgba(46, 143, 237, 0.3);
 }
+.title:link, .title:visited, .title:active {
+	color: #390;
+	transition:all 0.4s linear 0s}
+.title:hover {
+	color: #F60;
+	text-decoration: none;margin-left: 10px;
+}
