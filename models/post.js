@@ -15,6 +15,12 @@ module.exports = Post;
 //存储一篇文章及其相关信息
 Post.prototype.save = function(callback) {
 	var date = new Date();
+	var localTime = date.getTime();
+	var localOffset = date.getTimezoneOffset() * 60000;
+	var utc = localTime + localOffset; //得到国际标准时间
+	var offset = 8;
+	var calctime = utc + (3600000*offset);
+	date = new Date(calctime);
 	var time = {
 		date:date,
 		year:date.getFullYear(),
