@@ -9,8 +9,23 @@ module.exports = Pv;
 
 //储存一条留言信息
 Pv.prototype.save = function(callback) {
+	var date = new Date();
+	var localTime = date.getTime();
+	var localOffset = date.getTimezoneOffset() * 60000;
+	var utc = localTime + localOffset;
+	var offset = 8;
+	var calctime = utc + (3600000*offset);
+	date = new Date(calctime);
+	var time = {
+		date:date,
+		year:date.getFullYear(),
+		month:date.getFullYear() + "-" + (date.getMonth() + 1),
+		day:date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
+		minute:date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+	}
 	var pv = {
-		ip:this.ip
+		ip:this.ip,
+		time:time
 	}
 	mongodb.connect(settings.url, function(err, db) {
 		if(err) {
@@ -37,6 +52,7 @@ Pv.prototype.save = function(callback) {
 
 //获取访问统计
 Pv.getAll = function(callback) {
+	console.time('getAll');
 	mongodb.connect(settings.url, function(err, db) {
 		db.collection('pvs', function(err, collection) {
 			if(err) {
@@ -54,4 +70,5 @@ Pv.getAll = function(callback) {
 			});
 		});
 	});
+	console.timeEnd('getAll');
 };
