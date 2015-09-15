@@ -31,7 +31,7 @@ module.exports = function(app) {
 			}
 			res.render('index', {
 				title:'主页',
-				pvs:visitors,
+				pvs:getVista(),
 				posts:posts,
 				page:page,
 				isFirstPage:(page - 1) == 0,
