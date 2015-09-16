@@ -91,25 +91,25 @@ User.get = function(name, callback) {
 		});
 	});*/
 	async.waterfall([
-		function(callback) {
+		function(cb) {
 			mongodb.connect(settings.url, function(err, db) {
-				callback(err, db);
+				cb(err, db);
 			});
 		},
-		function(db, callback) {
-			db.collection('users', function(err, db, collection) {
-				callback(err, db, collection);
+		function(db, cb) {
+			db.collection('users', function(err, collection) {
+				cb(err, db, collection);
 			});
 		},
-		function(db, collection, callback) {
+		function(db, collection, cb) {
 			collection.findOne({
 				name:name
 			}, function(err, user) {
-				callback(err, db, user);
+				cb(err, db, user);
 			});
 		}
 	], function(err, db, user) {
-		db.close();
+		db.close();// 此处db并没有关闭，问题？
 		callback(err, user);
 	});
 };
