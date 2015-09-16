@@ -54,6 +54,7 @@ module.exports = function(app) {
 	app.get('/reg', function(req, res) {
 		res.render('reg', {
 			title:'注册',
+			pvs:null,
 			user:req.session.user,
 			success:req.flash('success').toString(),
 			error:req.flash('error').toString()
@@ -101,7 +102,7 @@ module.exports = function(app) {
 	});
 	app.get('/login', checkNotLogin);
 	app.get('/login', function(req, res) {
-		res.render('login', {title:'登陆',user:req.session.user,success:req.flash('success').toString(),error:req.flash('error').toString()});
+		res.render('login', {title:'登陆',pvs:null,user:req.session.user,success:req.flash('success').toString(),error:req.flash('error').toString()});
 	});
 	app.post('/login', checkNotLogin);
 	app.post('/login', function(req, res) {
@@ -127,7 +128,7 @@ module.exports = function(app) {
 	});
 	app.get('/post', checkLogin);
 	app.get('/post', function(req, res) {
-		res.render('post', {title:'发表',user:req.session.user,success:req.flash('success').toString(),error:req.flash('error').toString()});
+		res.render('post', {title:'发表',pvs:null,user:req.session.user,success:req.flash('success').toString(),error:req.flash('error').toString()});
 	});
 	app.post('/post', checkLogin);
 	app.post('/post', function(req, res) {
@@ -153,6 +154,7 @@ module.exports = function(app) {
 	app.get('/upload', function(req, res) {
 		res.render('upload', {
 			title:'文件上传',
+			pvs:null,
 			user:req.session.user,
 			success:req.flash('success').toString(),
 			error:req.flash('error').toString()
@@ -172,6 +174,7 @@ module.exports = function(app) {
 			}
 			res.render('archive', {
 				title:'存档',
+				pvs:null,
 				posts:posts,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -188,6 +191,7 @@ module.exports = function(app) {
 			}
 			res.render('tags', {
 				title:'标签',
+				pvs:null,
 				posts:posts,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -203,6 +207,7 @@ module.exports = function(app) {
 			}
 			res.render('tag', {
 				title:'TAG:' + req.params.tag,
+				pvs:null,
 				posts:posts,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -214,6 +219,7 @@ module.exports = function(app) {
 	app.get('/links', function(req, res) {
 		res.render('links', {
 			title:'友情链接',
+			pvs:null,
 			user:req.session.user,
 			success:req.flash('success').toString(),
 			error:req.flash('error').toString()
@@ -228,6 +234,7 @@ module.exports = function(app) {
 			}
 			res.render('search', {
 				title:"SEARCH:" + req.query.keyword,
+				pvs:null,
 				posts:posts,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -239,6 +246,7 @@ module.exports = function(app) {
 	app.get('/aboutme', function(req, res) {
 		res.render('aboutme', {
 			title:'关于我',
+			pvs:null,
 			user:req.session.user,
 			success:req.flash('success').toString(),
 			error:req.flash('error').toString()
@@ -261,6 +269,7 @@ module.exports = function(app) {
 				}
 				res.render('user', {
 					title:user.name,
+					pvs:null,
 					posts:posts,
 					page:page,
 					isFirstPage:(page - 1) == 0,
@@ -280,6 +289,7 @@ module.exports = function(app) {
 			}
 			res.render('article', {
 				title:req.params.title,
+				pvs:null,
 				post:post,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -322,6 +332,7 @@ module.exports = function(app) {
 			}
 			res.render('edit', {
 				title:'编辑',
+				pvs:null,
 				post:post,
 				user:req.session.user,
 				success:req.flash('success').toString(),
