@@ -48,7 +48,9 @@
 	<% } else { %>
 	<span><a title="登陆" href="/login">login</a></span>
 	<span><a title="关于我" href="/aboutme">aboutme</a></span>
-	<!-- <span><a title="注册" href="/reg">register</a></span> -->
+	<% if (1 == 2) {%>
+	<span><a title="注册" href="/reg">register</a></span>
+	<% } %>
 	<% } %>
 	<span><form action="/search" method="GET"><input type="text" name="keyword" placeholder="SEARCH" class="search" /></form></span>
 </nav>
@@ -57,7 +59,7 @@
 	<br/>
 	<% if (pvs) { %>
 	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
-	<p id="pv" class="pv">您是本站的第 <%= pvs %> 位访客</p>
+	<p id="pv" class="pv">您是本站的第 <span class="color_shine"><%= pvs %></span> 位访客</p>
 	<script type="text/javascript">
 	$("#pv").on("click", function() {
 		if($("#pv").hasClass("pv")) {

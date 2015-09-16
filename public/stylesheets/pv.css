@@ -179,3 +179,17 @@ font-size:20px;
   96% { transform: translate(4px, -9px) rotate(2.5deg); }
   98% { transform: translate(-4px, 9px) rotate(0.5deg); }
 }
+
+.color_shine {
+background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+-webkit-background-size: 125px;
+color: rgba(255, 255, 255, 0.1);
+-webkit-background-clip: text;
+-webkit-animation-name: color_shine;
+-webkit-animation-duration: 2s;
+-webkit-animation-iteration-count: infinite;
+}
+@-webkit-keyframes color_shine {
+  0% { background-position: top left; }
+  100% { background: top right; }
+}
