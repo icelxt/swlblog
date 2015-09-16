@@ -11,34 +11,42 @@ var crypto = require('crypto'),
 	User = require('../models/user.js'),
 	Post = require('../models/post.js'),
 	Comment = require('../models/comment.js'),
-	Pv = require('../models/pv.js');
+	Pv = require('../models/pv.js'),
+	async = require('async');
 module.exports = function(app) {
 	app.get('/', function(req, res) {
-		var ip = getClientIp(req),
-			pv = new Pv({ip:ip});
-		pv.save(function(err) {
-			if(err) {
-				req.flash('error', err);
-				return res.redirect('/');
+		async.waterfall([
+			function(callback) {
+				var ip = getClientIp(req),
+					pv = new Pv({ip:ip});
+				pv.save(function(err, cb) {
+					if(err) {
+						cb(err);
+					}
+				});
+				Pv.getAll(function(err, pvs) {
+					callback(null, pvs);
+				});
 			}
-		});
-		//判断是否是第一页，并把请求的页数转换成number类型
-		var page = req.query.p ? parseInt(req.query.p) : 1;
-		var num = 5;
-		Post.getNum(null, page, num, function(err, posts, total) {
-			if(err) {
-				posts = [];
-			}
-			res.render('index', {
-				title:'主页',
-				pvs:getVista(),
-				posts:posts,
-				page:page,
-				isFirstPage:(page - 1) == 0,
-				isLastPage:((page - 1) * num + posts.length) == total,
-				user:req.session.user,
-				success:req.flash('success').toString(),
-				error:req.flash('error').toString()
+		], function(err, result) {
+			//判断是否是第一页，并把请求的页数转换成number类型
+			var page = req.query.p ? parseInt(req.query.p) : 1;
+			var num = 5;
+			Post.getNum(null, page, num, function(err, posts, total) {
+				if(err) {
+					posts = [];
+				}
+				res.render('index', {
+					title:'主页',
+					pvs:result,
+					posts:posts,
+					page:page,
+					isFirstPage:(page - 1) == 0,
+					isLastPage:((page - 1) * num + posts.length) == total,
+					user:req.session.user,
+					success:req.flash('success').toString(),
+					error:req.flash('error').toString()
+				});
 			});
 		});
 	});
@@ -46,7 +54,6 @@ module.exports = function(app) {
 	app.get('/reg', function(req, res) {
 		res.render('reg', {
 			title:'注册',
-			pvs:getVista(),
 			user:req.session.user,
 			success:req.flash('success').toString(),
 			error:req.flash('error').toString()
@@ -94,7 +101,7 @@ module.exports = function(app) {
 	});
 	app.get('/login', checkNotLogin);
 	app.get('/login', function(req, res) {
-		res.render('login', {title:'登陆',pvs:getVista(),user:req.session.user,success:req.flash('success').toString(),error:req.flash('error').toString()});
+		res.render('login', {title:'登陆',user:req.session.user,success:req.flash('success').toString(),error:req.flash('error').toString()});
 	});
 	app.post('/login', checkNotLogin);
 	app.post('/login', function(req, res) {
@@ -120,7 +127,7 @@ module.exports = function(app) {
 	});
 	app.get('/post', checkLogin);
 	app.get('/post', function(req, res) {
-		res.render('post', {title:'发表',pvs:getVista(),user:req.session.user,success:req.flash('success').toString(),error:req.flash('error').toString()});
+		res.render('post', {title:'发表',user:req.session.user,success:req.flash('success').toString(),error:req.flash('error').toString()});
 	});
 	app.post('/post', checkLogin);
 	app.post('/post', function(req, res) {
@@ -146,7 +153,6 @@ module.exports = function(app) {
 	app.get('/upload', function(req, res) {
 		res.render('upload', {
 			title:'文件上传',
-			pvs:getVista(),
 			user:req.session.user,
 			success:req.flash('success').toString(),
 			error:req.flash('error').toString()
@@ -166,7 +172,6 @@ module.exports = function(app) {
 			}
 			res.render('archive', {
 				title:'存档',
-				pvs:getVista(),
 				posts:posts,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -183,7 +188,6 @@ module.exports = function(app) {
 			}
 			res.render('tags', {
 				title:'标签',
-				pvs:getVista(),
 				posts:posts,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -199,7 +203,6 @@ module.exports = function(app) {
 			}
 			res.render('tag', {
 				title:'TAG:' + req.params.tag,
-				pvs:getVista(),
 				posts:posts,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -211,7 +214,6 @@ module.exports = function(app) {
 	app.get('/links', function(req, res) {
 		res.render('links', {
 			title:'友情链接',
-			pvs:getVista(),
 			user:req.session.user,
 			success:req.flash('success').toString(),
 			error:req.flash('error').toString()
@@ -226,7 +228,6 @@ module.exports = function(app) {
 			}
 			res.render('search', {
 				title:"SEARCH:" + req.query.keyword,
-				pvs:getVista(),
 				posts:posts,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -238,7 +239,6 @@ module.exports = function(app) {
 	app.get('/aboutme', function(req, res) {
 		res.render('aboutme', {
 			title:'关于我',
-			pvs:getVista(),
 			user:req.session.user,
 			success:req.flash('success').toString(),
 			error:req.flash('error').toString()
@@ -261,7 +261,6 @@ module.exports = function(app) {
 				}
 				res.render('user', {
 					title:user.name,
-					pvs:getVista(),
 					posts:posts,
 					page:page,
 					isFirstPage:(page - 1) == 0,
@@ -281,7 +280,6 @@ module.exports = function(app) {
 			}
 			res.render('article', {
 				title:req.params.title,
-				pvs:getVista(),
 				post:post,
 				user:req.session.user,
 				success:req.flash('success').toString(),
@@ -324,7 +322,6 @@ module.exports = function(app) {
 			}
 			res.render('edit', {
 				title:'编辑',
-				pvs:getVista(),
 				post:post,
 				user:req.session.user,
 				success:req.flash('success').toString(),

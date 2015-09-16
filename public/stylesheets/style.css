@@ -24,8 +24,8 @@ header {
 }
 .navr {
 	float: right;
-	margin-right: -16em;
-	/*position: fixed;*/
+	margin-left: 40em;
+	position: fixed;
 	font-family: "Microsoft YaHei";
 	font-size: 1.1em;
 }

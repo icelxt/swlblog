@@ -6,6 +6,9 @@
 	<title>Blog</title>
 	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="/stylesheets/style.css">
+	<% if (pvs) { %>
+	<link rel="stylesheet" href="/stylesheets/pv.css">
+	<% } %>
 	<!-- <link rel="stylesheet" href="/stylesheets/calendar.css">
 	 window.onload = function(){
 			var date = new Date();
@@ -52,7 +55,19 @@
 <nav class="navr">
 	<embed width="185px" height="50px" wmode="transparent" quality="high" type="application/x-shockwave-flash" src="/flash/time.swf">
 	<br/>
-	<!-- <p class="info">您是本站的第 <%= pvs %> 位访客</p> -->
+	<% if (pvs) { %>
+	<script type="text/javascript" src="https://cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+	<p id="pv" class="pv">您是本站的第 <%= pvs %> 位访客</p>
+	<script type="text/javascript">
+	$("#pv").on("click", function() {
+		if($("#pv").hasClass("pv")) {
+			$("#pv").removeClass("pv");
+		}else {
+			$("#pv").addClass("pv");
+		}
+	});
+	</script>
+	<% } %>
 </nav>
 <article>
 	<% if (success) { %>
