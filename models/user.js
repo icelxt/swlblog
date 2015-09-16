@@ -109,7 +109,7 @@ User.get = function(name, callback) {
 			});
 		}
 	], function(err, db, user) {
-		db.close();// 此处db并没有关闭，问题？
+		db.close();// 此处db并没有关闭，问题？有一个属性：openCalled检测数据库是否已經被打开
 		callback(err, user);
 	});
 };
