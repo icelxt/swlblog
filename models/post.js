@@ -1,6 +1,6 @@
 var mongodb = require('mongodb').Db,
-	settings = require('../settings'),
-	markdown = require('markdown').markdown;
+	settings = require('../settings')/*,
+	markdown = require('markdown').markdown*/;
 
 function Post(name, head, title, tags, post) {
 	this.name = name;
@@ -36,7 +36,7 @@ Post.prototype.save = function(callback) {
 		title : this.title,
 		tags : this.tags,
 		post : this.post,
-		comments:[],
+		//comments:[],
 		pv:0
 	};
 	//打开数据库
@@ -178,9 +178,9 @@ Post.getOne = function(name, day, title, callback) {
 						}
 					});
 					/*doc.post = markdown.toHTML(doc.post);*/
-					doc.comments.forEach(function(comment) {
+					/*doc.comments.forEach(function(comment) {
 						comment.content = markdown.toHTML(comment.content);
-					});
+					});*/
 				}
 				callback(null, doc);
 			});

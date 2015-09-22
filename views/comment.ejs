@@ -1,61 +1,8 @@
-<br/>
-<% post.comments.forEach(function(comment, index) { %>
-<div style="padding-left:4em">
-<p>
-	<img src="<%= comment.head %>" class="l_head img-circle" style="width:51px;" />
-	<a href="<%= comment.website %>"><%= comment.name %></a>
-	<span class="info"> 回复于 <%= comment.time %></span>
-</p>
-<p><%- comment.content %></p>
-</div>
-<% }) %>
-
-<form class="form-horizontal" method="post">
-	<% if(user) { %>
-	<div class="form-group">
-		<label for="inname" class="col-sm-2 control-label">姓名</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inname" name="name" placeholder="姓名" value="<%= user.name %>"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="inemail" class="col-sm-2 control-label">邮箱</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inemail" name="email" placeholder="邮箱" value="<%= user.email %>"/>
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="inweb" class="col-sm-2 control-label">网址</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inweb" name="website" placeholder="网址" value="<%= user.website %>"/>
-		</div>
-	</div>
-	<!-- 姓名：<input type="text" name="name" value="<%= user.name %>" /><br/>
-	邮箱：<input type="text" name="email" value="<%= user.email %>" /><br/>
-	网址：<input type="text" name="website" value="<%= user.website %>" /><br/> -->
-	<% } else{ %>
-	<div class="form-group">
-		<label for="inname" class="col-sm-2 control-label" style="text-align: left; width:auto;">姓名</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inname" name="name" placeholder="姓名" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="inemail" class="col-sm-2 control-label" style="text-align: left; width:auto;">邮箱</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inemail" name="email" placeholder="邮箱" />
-		</div>
-	</div>
-	<div class="form-group">
-		<label for="inweb" class="col-sm-2 control-label" style="text-align: left; width:auto;">网址</label>
-		<div class="col-sm-10">
-			<input type="text" class="form-control" id="inweb" name="website" placeholder="网址" />
-		</div>
-	</div>
-	<!-- 姓名：<input type="text" name="name" placeholder="your name" /><br/>
-	邮箱：<input type="text" name="email" placeholder="your email" /><br/>
-	网址：<input type="text" name="website" value="http://" /><br/> -->
-	<% } %>
-	<textarea name="content" class="form-control" rows="5" cols="65" placeholder="一起来讨论吧，支持markdown格式哟！"></textarea><br/>
-	<input type="submit" class="btn btn-info" value="留言">
-</form>
+<div id="SOHUCS" sid="<%= post.name %><%= post.time.day %><%= post.title %>"></div>
+<script charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/changyan.js" ></script>
+<script type="text/javascript">
+	window.changyan.api.config({
+		appid: 'cys0nLqrf',
+		conf: 'prod_ca2c02a739ae8fb4d07e2bbc5dcf5a9f'
+	});
+</script>

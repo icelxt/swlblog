@@ -12,7 +12,7 @@
 	<% }}) %>
 </p>
 <%- post.post %><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>">阅读全文</a>
-<p class="info">阅读：<%= post.pv %> | 评论：<%= post.comments.length %></p>
+<p class="info">阅读：<%= post.pv %> | 评论：<span id = "sourceId::<%= post.name %><%= post.time.day %><%= post.title %>" class = "cy_cmt_count" ></span></p>
 </div>
 <% }) %>
 <%- include paging %>

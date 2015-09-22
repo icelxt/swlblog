@@ -10,7 +10,7 @@ module.exports = router;*/
 var crypto = require('crypto'),
 	User = require('../models/user.js'),
 	Post = require('../models/post.js'),
-	Comment = require('../models/comment.js'),
+	//Comment = require('../models/comment.js'),
 	Pv = require('../models/pv.js'),
 	async = require('async');
 module.exports = function(app) {
@@ -298,7 +298,7 @@ module.exports = function(app) {
 		});
 	});
 	//留言模块
-	app.post('/u/:name/:day/:title', function(req, res) {
+	/*app.post('/u/:name/:day/:title', function(req, res) {
 		var date = new Date(),
 			time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
 		var md5 = crypto.createHash('md5'),
@@ -321,7 +321,7 @@ module.exports = function(app) {
 			req.flash('success', '留言成功!');
 			res.redirect('back');
 		})
-	});
+	});*/
 	app.get('/edit/:name/:day/:title', checkLogin);
 	app.get('/edit/:name/:day/:title', function(req, res) {
 		var currentUser = req.session.user;
