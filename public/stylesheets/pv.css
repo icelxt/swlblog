@@ -15,7 +15,7 @@
 	animation-play-state: running;
 }
 .pv:after{
-content:"......点击这里也不一定能停下里哟";
+content:"......点击这里也不一定能停下来哟";
 font-weight: 400;
 line-height: 1;
 color: #777;	
@@ -181,9 +181,9 @@ font-size:20px;
 }
 
 .color_shine {
-background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
+background: rgb(233, 234, 236) -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat;
 -webkit-background-size: 125px;
-color: rgba(255, 255, 255, 0.1);
+color: rgba(61, 68, 80, 0.5);
 -webkit-background-clip: text;
 -webkit-animation-name: color_shine;
 -webkit-animation-duration: 2s;
